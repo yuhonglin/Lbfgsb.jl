@@ -1,2 +1,2 @@
 liblbfgsb.so: solver.f Makefile
-	gfortran -fPIC -shared ./solver.f -o liblbfgsb.so
+	gfortran -fPIC -shared -O3 ./solver.f -o liblbfgsb.so
