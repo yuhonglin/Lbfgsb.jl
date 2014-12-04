@@ -56,7 +56,8 @@ function lbfgsb (ogFunc,
                  maxiter::Int64 = 100,
                  factr::Float64 = 1e7,
                  pgtol::Float64 = 1e-5,
-                 iprint::Int64 = -1 # does not print
+                 iprint::Int64 = -1, # does not print
+                 verbose::Bool = false
                  )
     m = [convert(Int32, m)]
     factr = [convert(Float64,1e7)];
@@ -82,7 +83,7 @@ function lbfgsb (ogFunc,
 
     @callLBFGS "START"
 
-    status = "success"
+    status = "success";
 
     t = 0;
 
@@ -113,5 +114,5 @@ function lbfgsb (ogFunc,
         @callLBFGS ""
     end
 
-    (f, x, status);
+    return (f, x, status, t);
 end

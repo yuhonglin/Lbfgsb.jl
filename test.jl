@@ -14,6 +14,9 @@ end
 
 x = [0.0 0.0];
 
-a = lbfgsb( ogFunc, x )
+f, x, status, numIter  = lbfgsb( ogFunc, x )
 
-print (a)
+print ("optimal value : $f\n")
+print ("optimal x     : $x\n")
+print ("status        : $status\n")
+print ("number of Iteration : $numIter\n")
