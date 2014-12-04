@@ -90,14 +90,12 @@ function lbfgsb (ogFunc,
     while true
 
         if task[1] == 'F'
-            tf, tg = ogFunc(x);
+            tf, g = ogFunc(x);
             f[1] = convert(Float64, tf);
-            g[1] = convert(Float64, tg[1]);
-            g[2] = convert(Float64, tg[2]);
             
         elseif task[1] == 'N'
             t += 1;
-            if t >= maxiter 
+            if t >= maxiter # exceed maximum number of iteration
                 @callLBFGS "STOP"
                 break;
             end
