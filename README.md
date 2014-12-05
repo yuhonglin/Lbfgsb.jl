@@ -39,7 +39,7 @@ I am new to Julia language so the code will be cleaned gradually
 
 
   - Other parameters : see the paper above for reference (mostly does not need to modify)
-  - ```iprint``` : printing level of the fortran routine
+  - ```iprint``` : printing level of the fortran routine, set to ```-1``` if you does not want to print anything
   
 License
 ----
