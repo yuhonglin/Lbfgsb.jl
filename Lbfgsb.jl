@@ -84,6 +84,8 @@ function lbfgsb (ogFunc,
 
     if length(btype) == 0
         btype = [convert(Int32, 2) for i=1:(n[1])];
+    else
+        btype = [convert(Int32, i) for i in btype];
     end
 
     # structures used by the L-BFGS-B routine.
