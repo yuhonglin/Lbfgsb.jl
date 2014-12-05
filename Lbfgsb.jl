@@ -62,7 +62,7 @@ function lbfgsb (ogFunc,
                  iprint::Int64 = -1 # does not print
                  )
     m = [convert(Int32, m)]
-    factr = [convert(Float64,1e7)];
+    factr = [convert(Float64, factr)];
     pgtol = [convert(Float64, pgtol)];
     iprint = [convert(Int32, iprint)];
     
