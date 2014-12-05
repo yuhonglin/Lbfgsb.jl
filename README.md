@@ -3,7 +3,11 @@
 This is wrapper of the famous [lbfgsb fortran library] of Julia language inspired by [this wrapper]
 
 ## version
-0.0.1 (just usable...)
+0.0.1 (just usable)
+
+## Platform
+Currently only for Linux with ```gfortran``` installed
+
 
 ## Copyright Notice
   File ```solver.f``` is written by the authors of the following papers,
