@@ -72,10 +72,14 @@ function lbfgsb (ogFunc,
 
     if length(lb) == 0
         lb = [-Inf for i=1:(n[1])];
+    else
+        lb = [convert(Float64, i) for i in lb]
     end
 
     if length(ub) == 0
         ub = [Inf for i=1:(n[1])];
+    else
+        ub = [convert(Float64, i) for i in ub]
     end
 
     if length(btype) == 0
