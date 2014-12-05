@@ -1,10 +1,10 @@
 macro callLBFGS(cmd)
     quote
         if length($cmd) != 0
-            for i = 1:length($cmd)
+            @simd for i = 1:length($cmd)
                 task[i] = ($cmd)[i];
             end
-            for i = length($cmd)+1:60
+            @simd for i = length($cmd)+1:60
                 task[i] = ' ';
             end
         end
@@ -52,6 +52,9 @@ end
 
 function lbfgsb (ogFunc,
                  x,
+                 lb = [],
+                 ub = [],
+                 btype = [],
                  m::Int64 = 5,
                  maxiter::Int64 = 100,
                  factr::Float64 = 1e7,
@@ -67,10 +70,18 @@ function lbfgsb (ogFunc,
     n = [convert(Int32, length(x))]; # number of variables
     f = [convert(Float64, 0.0)]; # The value of the objective.
     g = [convert(Float64, 0.0) for i=1:(n[1])]; # The value of the gradient.
-    lb = [convert(Float64, -10000) for i=1:(n[1])];
-    ub = [convert(Float64, 10000) for i=1:(n[1])];
-    btype = [convert(Int32, 2) for i=1:(n[1])];
-    
+
+    if length(lb) == 0
+        lb = [-Inf for i=1:(n[1])];
+    end
+
+    if length(ub) == 0
+        ub = [Inf for i=1:(n[1])];
+    end
+
+    if length(btype) == 0
+        btype = [convert(Int32, 2) for i=1:(n[1])];
+    end
 
     # structures used by the L-BFGS-B routine.
     wa = [convert(Float64, 0.0) for i = 1:(2*m[1] + 5)*n[1] + 12*m[1]*(m[1] + 1)];

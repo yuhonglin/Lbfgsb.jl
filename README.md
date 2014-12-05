@@ -16,7 +16,7 @@ I am new to Julia language so the code will be cleaned gradually
 
 ## usage
   - first run ```make```
-  - see test.jl for example
+  - see test.jl for example ()
 
 License
 ----
