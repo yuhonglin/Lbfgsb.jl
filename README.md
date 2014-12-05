@@ -29,8 +29,9 @@ I am new to Julia language so the code will be cleaned gradually
   - ```ub``` : upper bounds of each dimension of ```x```. Set to ```Inf``` if equals to ```[]```.
   - ```btype``` : boundary types, see below,
 
+
 | btype | boundary type of corresponding dimension |
-|--------------------------------------------------|
+| :---: |:----------------------------------------:|
 |     0 | unbounded                                |
 |     1 | only lower bound                         |
 |     2 | both lower and upper bound               |
