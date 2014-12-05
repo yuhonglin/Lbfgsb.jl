@@ -59,8 +59,7 @@ function lbfgsb (ogFunc,
                  maxiter::Int64 = 100,
                  factr::Float64 = 1e7,
                  pgtol::Float64 = 1e-5,
-                 iprint::Int64 = -1, # does not print
-                 verbose::Bool = false
+                 iprint::Int64 = -1 # does not print
                  )
     m = [convert(Int32, m)]
     factr = [convert(Float64,1e7)];
