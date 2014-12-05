@@ -14,7 +14,7 @@ end
 
 x = [0.0 0.0];
 
-f, x, status, numIter  = lbfgsb( ogFunc, x )
+f, x, status, numIter  = lbfgsb( ogFunc, x, iprint=1 )
 
 print ("optimal value : $f\n")
 print ("optimal x     : $x\n")
