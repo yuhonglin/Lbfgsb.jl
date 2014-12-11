@@ -2,6 +2,10 @@
 ## 
 ##
 
+if Base.OS_NAME != :Linux
+    error("currently, this library only supports Linux")
+end
+
 
 # get the current path
 currentFilePath = @__FILE__()
