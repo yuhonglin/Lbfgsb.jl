@@ -1,5 +1,7 @@
-## it seems I need to write the this file ourselves
-## 
+## It seems I need to write this file myself
+## The code is mainly inspired by
+##   - Source of BinDeps.jl
+##   - https://github.com/JuliaOpt/NLopt.jl/blob/master/src/NLopt.jl
 ##
 
 if Base.OS_NAME != :Linux
