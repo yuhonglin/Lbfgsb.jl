@@ -18,7 +18,7 @@ macro callLBFGS(cmd)
             end
         end
 
-        ccall((:setulb_, "/home/lin/.julia/v0.3/Lbfgsb/deps/usr/lib/liblbfgsbf.so"),
+        ccall((:setulb_, liblbfgsbf),
               Void,
               (Ptr{Int32},
                Ptr{Int32},
