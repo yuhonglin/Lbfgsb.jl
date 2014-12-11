@@ -1,4 +1,7 @@
-## it seems that we need to write the this file ourselves
+## it seems I need to write the this file ourselves
+## 
+##
+
 
 # get the current path
 currentFilePath = @__FILE__()
@@ -35,13 +38,39 @@ end
 
 # get the source, untar it and then delete
 function getSource()
-    run(`wget http://users.iems.northwestern.edu/~nocedal/Software/Lbfgsb.3.0.tar.gz`)
-    run(`tar xf $(currentDirPath)/Lbfgsb.3.0.tar.gz`)
-    run(`rm $(currentDirPath)/Lbfgsb.3.0.tar.gz`)
+
+    url = "http://users.iems.northwestern.edu/~nocedal/Software/Lbfgsb.3.0.tar.gz"
+    
+    # decide which downloader is available copied from BinDeps.jl
+    downloader = nothing;
+    for checkcmd in (:curl, :wget, :fetch)
+        try
+            if success(`$checkcmd --help`)
+                downloader = checkcmd
+                break
+            end
+        catch
+            continue
+        end
+    end
+
+    downloadcmd = nothing;
+    if downloader == :wget
+        downloadcmd = `wget -O $(currentDirPath)/solver.tar.gz $url`
+    elseif downloader == :curl
+        downloadcmd = `curl -o $(currentDirPath)/solver.tar.gz $url`
+    elseif downloadcmd == :fetch
+        downloadcmd = `fetch -f $(currentDirPath)/solver.tar.gz $url`
+    else
+        error("No download agent available; install curl, wget, or fetch.")
+    end
+    
+    run(downloadcmd)
+    run(`tar xf $(currentDirPath)/solver.tar.gz`)
+    run(`rm $(currentDirPath)/solver.tar.gz`)
 end
 
 getSource()
 mklibdir()
 runmake()
 writeDeps()
-         
