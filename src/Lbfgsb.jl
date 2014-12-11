@@ -1,5 +1,11 @@
 module Lbfgsb
 
+if isfile(joinpath(dirname(@__FILE__),"..","deps","deps.jl"))
+    include("../deps/deps.jl")
+else
+    error("Lbfgsb is not properly installed. Please run Pkg.build(\"Lbfgsb\")")
+end
+
 # package code goes here
 macro callLBFGS(cmd)
     quote
@@ -12,7 +18,7 @@ macro callLBFGS(cmd)
             end
         end
 
-        ccall((:setulb_, "./liblbfgsb.so"),
+        ccall((:setulb_, "/home/lin/.julia/v0.3/Lbfgsb/deps/usr/lib/liblbfgsbf.so"),
               Void,
               (Ptr{Int32},
                Ptr{Int32},
@@ -133,5 +139,7 @@ function lbfgsb (ogFunc,
 
     return (f, x, status, t);
 end
+
+export lbfgsb
 
 end # module
