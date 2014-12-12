@@ -19,7 +19,7 @@ Currently only for Linux with ```gfortran``` installed
 I am new to Julia language so the code will be cleaned gradually
 
 ## usage
-  - Run ```Pkg.clone("https://github.com/yuhonglin/Lbfgsb.jl")```
+  - First, run ```Pkg.clone("https://github.com/yuhonglin/Lbfgsb.jl")```, then run ```Pkg.build("Lbfgsb")```
   - Currently only provide a function called ```lbfgsb```, see its option below,
 
 # Options
