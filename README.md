@@ -1,6 +1,6 @@
 # Lbfgsb.jl
 
-[![Build Status](https://travis-ci.org/yuhonglin/Lbfgsb.jl.png)](https://travis-ci.org/yuhonglin/Lbfgsb.jl)
+[![Build Status](https://travis-ci.org/yuhonglin/Lbfgsb.jl.png?branch=master)](https://travis-ci.org/yuhonglin/Lbfgsb.jl)
 
 
 This is wrapper of the famous [lbfgsb fortran library] of Julia language inspired by [this wrapper]
