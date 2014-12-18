@@ -59,8 +59,9 @@ macro callLBFGS(cmd)
     end
 end
 
-function lbfgsb (ogFunc,
-                 x;
+    
+function lbfgsb (ogFunc!::Function,
+                 x::Array;
                  lb = [],
                  ub = [],
                  btype = [],
@@ -70,6 +71,8 @@ function lbfgsb (ogFunc,
                  pgtol::Float64 = 1e-5,
                  iprint::Int64 = -1 # does not print
                  )
+    initial_x = x;
+        
     m = [convert(Int32, m)]
     factr = [convert(Float64, factr)];
     pgtol = [convert(Float64, pgtol)];
@@ -111,12 +114,13 @@ function lbfgsb (ogFunc,
     status = "success";
 
     t = 0;
+    c = 0;
 
     while true
 
         if task[1] == 'F'
-            tf, g = ogFunc(x);
-            f[1] = convert(Float64, tf);
+            f[1] = convert( Float64, ogFunc!(x,g) );
+            c += 1;
             
         elseif task[1] == 'N'
             t += 1;
@@ -137,8 +141,45 @@ function lbfgsb (ogFunc,
         @callLBFGS ""
     end
 
-    return (f, x, status, t);
-end
+    return (f[1], x, t, c, status)
+    
+end # function lbfgsb
+
+
+function lbfgsb (objFunc::Function,
+                 gradFunc!::Function,
+                 x::Array;
+                 lb = [],
+                 ub = [],
+                 btype = [],
+                 m::Int64 = 5,
+                 maxiter::Int64 = 100,
+                 factr::Float64 = 1e7,
+                 pgtol::Float64 = 1e-5,
+                 iprint::Int64 = -1 # does not print
+                 )
+    
+    function _ogFunc!(x, g::Array)
+        gradFunc!(x, g);
+        return objFunc(x);
+    end
+    
+    return lbfgsb(_ogFunc!,
+           x;
+           lb=lb,
+           ub=ub,
+           btype=btype,
+           m=m,
+           maxiter=maxiter,
+           factr=factr,
+           pgtol=pgtol,
+           iprint=iprint # does not print
+           )
+end # function lbfgsb
+
+
+
+
 
 export lbfgsb
 
