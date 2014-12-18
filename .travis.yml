@@ -1,6 +1,7 @@
-language: cpp
+language: fortran
 compiler:
   - clang
+  - gfortran
 notifications:
   email: false
 env:
@@ -14,4 +15,4 @@ before_install:
   - sudo apt-get install libpcre3-dev julia -y
   - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 script:
-  - julia -e 'Pkg.init(); Pkg.clone(pwd()); Pkg.test("Lbfgsb")'
+  - julia -e 'Pkg.init(); Pkg.clone(pwd()); Pkg.build("Lbfgsb"); Pkg.test("Lbfgsb")'
