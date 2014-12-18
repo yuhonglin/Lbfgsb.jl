@@ -26,7 +26,7 @@ I am new to Julia language so the code will be cleaned gradually
   - Currently only provide a function called ```lbfgsb```, see its option below,
 
 # Options
-  - ```ogFunc``` :  Objective and gradient function. It accept cuurent ```x``` and return the objective function and gradient value in a tuple.
+  - ```ogFunc``` :  Objective and gradient function. It accept current ```x``` and a gradient array ```g```. It should return the objective function value and put the gradient into into ```g```.
   - ```x``` : Initial value of ```x```.
   - ```lb``` : lower bounds of each dimension of ```x```. Set to ```-Inf``` if equals to ```[]```.
   - ```ub``` : upper bounds of each dimension of ```x```. Set to ```Inf``` if equals to ```[]```.
